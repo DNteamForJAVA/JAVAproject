@@ -55,26 +55,22 @@ public class Button extends JButton implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //System.out.println(MainUI.bubble1.nameIcon.length);
         for (int i=MainUI.bubble1.numColumn+2; i<(MainUI.bubble1.numRow+1)*(MainUI.bubble1.numColumn+2); i++){
             if (index == MainUI.bubble1.nameIcon[i])
             {
                 MainUI.bubble1.nameIcon[i] = -1;
                 MainUI.bubble1.remainIcon -= 1;
-                //System.out.println(MainUI.bubble1.remainIcon);
+
                 MainUI.bubble1.iconLabel[i].setVisible(false);
                 SwingUtilities.updateComponentTreeUI(MainUI.bubble1);
-                //break;
             }
             if(MainUI.haveBubble2){
                 if (index == MainUI.bubble2.nameIcon[i])
                 {
                     MainUI.bubble2.nameIcon[i] = -1;
                     MainUI.bubble2.remainIcon -= 1;
-                    //System.out.println(MainUI.bubble1.remainIcon);
                     MainUI.bubble2.iconLabel[i].setVisible(false);
                     SwingUtilities.updateComponentTreeUI(MainUI.bubble2);
-                    //break;
                 }
             }
             

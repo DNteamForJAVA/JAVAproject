@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -20,18 +21,35 @@ public class Bubble extends JPanel implements ActionListener {
     private int bubbleHeight;
     private int bubbleWidth;
     private int x_coordinate, y_coordinate;
-    private final Timer timer;
+    public Timer timer;
     public int remainIcon;
     public boolean isExplode; //đã nổ chưa
     public JLabel [] iconLabel;
     private int redColor, greenColor, blueColor;
     public int [] nameIcon;
+   
+    
     public Bubble(int x, int y, int numR, int numC)
     {                      
         initBubble(x,y,numR,numC);        
         this.setBounds(this.x_coordinate, this.y_coordinate, this.bubbleWidth, this.bubbleHeight);
-        timer = new Timer(40, this);
+        if(MainUI.scoreUpdate > 20){
+            timer = new Timer(18, this);
         timer.start();
+        }else if(MainUI.scoreUpdate > 15){
+            timer = new Timer(20, this);
+        timer.start();
+        }else if(MainUI.scoreUpdate > 12){
+            timer = new Timer(24, this);
+        timer.start();
+        }else if(MainUI.scoreUpdate > 7){
+            timer = new Timer(28, this);
+        timer.start();
+        }else{
+            timer = new Timer(30, this);
+            timer.start();
+        }
+        
     }
     private void initBubble(int x, int y, int numR, int numC)
     {
@@ -138,6 +156,8 @@ public class Bubble extends JPanel implements ActionListener {
             this.dropDown();
             this.repaint();
         }
+ 
+        
     }
     
     private void dropDown()

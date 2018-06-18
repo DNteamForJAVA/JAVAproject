@@ -47,6 +47,7 @@ public class MainUI extends JFrame implements ActionListener{
     JButton openExit;
     JPanel container;
     JLabel score;
+    JLabel endScore;
     JButton back;
     
     JLabel gameOver;
@@ -54,11 +55,10 @@ public class MainUI extends JFrame implements ActionListener{
     JButton playAgain;
     JButton endHighScore;
     JButton endExit;
-    int flag= 0;
-    static int endgameFlag=0;
+    static int endgameFlag=1;
     static int temp =0;
     
-    int scoreUpdate=0;
+    static int scoreUpdate=0;
     ArrayList<Integer>scoreArray = new ArrayList<>();
     String[] showScore = new String[10];
     JPanel scoreView;
@@ -114,12 +114,15 @@ public class MainUI extends JFrame implements ActionListener{
         gameOver = new JLabel("GAME OVER!!",SwingConstants.CENTER);
         gameOver.setBounds(230, 50, 340, 80);     
         gameOver.setFont(new Font("Arial", Font.PLAIN, 50));
+        endScore = new JLabel();
+        endScore.setBounds(380, 150, 340, 80);
+        endScore.setFont(new Font("Arial", Font.PLAIN, 70));
         playAgain = new JButton("PLAY AGAIN");
-        playAgain.setBounds(340, 200, 120, 30);
+        playAgain.setBounds(340, 250, 120, 30);
         endHighScore = new JButton("HIGH SCORES");
-        endHighScore.setBounds(340, 250, 120, 30);
+        endHighScore.setBounds(340, 300, 120, 30);
         endExit = new JButton("EXIT");
-        endExit.setBounds(340, 300,120,30);
+        endExit.setBounds(340, 350,120,30);
         
         scoreView = new JPanel();
         back = new JButton("Back");
@@ -172,6 +175,7 @@ public class MainUI extends JFrame implements ActionListener{
         mainPanel.add(leftPanel);
         mainPanel.add(rightPanel);
         endView.add(gameOver);
+        endView.add(endScore);
         endView.add(playAgain);
         endView.add(endHighScore);
         endView.add(endExit);
@@ -187,27 +191,37 @@ public class MainUI extends JFrame implements ActionListener{
         endExit.addActionListener(this);
         endHighScore.addActionListener(this);
         back.addActionListener(this);
+        playAgain.addActionListener(this);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(endgameFlag==1 && temp ==1){
+        if(endgameFlag==1 && temp != 0){
+            endScore.setText(String.valueOf(scoreUpdate));
             card.show(container, "3");
+            if (bubble1.timer.isRunning())
+                bubble1.timer.stop();
+            if (this.haveBubble2)
+                if (bubble2.timer.isRunning())
+                    bubble2.timer.stop();
         }
         if(e.getSource()==back){
-            card.show(container, "1");
+            if (temp == 0)
+                card.show(container, "1");
+            else card.show(container, "3");
         }
         if (e.getSource()==start){
             card.show(container, "2");
-            flag =1;
+            endgameFlag = 0;
         }
         if (e.getSource()==openExit ||e.getSource()==endExit){
             this.dispose();
+            System.exit(0);
         }
         if (e.getSource()==openHighScore ||e.getSource()==endHighScore){
             card.show(container, "4");
         }
-        if (flag==1){
+        if (endgameFlag == 0){
             if (this.haveBubble1 == false){
                 this.haveBubble1 = true;
                 this.bubble1 = new Bubble(10,-100,3,3);
@@ -215,7 +229,7 @@ public class MainUI extends JFrame implements ActionListener{
                 this.leftPanel.add(bubble1);   
                 SwingUtilities.updateComponentTreeUI(this);
             }
-            if (this.haveBubble2 == false && this.scoreUpdate >= 1){
+            if (this.haveBubble2 == false && this.scoreUpdate >= 3){
                 this.haveBubble2 = true;
                 this.bubble2 = new Bubble(200,-100,3,3);
                 this.bubble2.isExplode = false;          
@@ -237,9 +251,8 @@ public class MainUI extends JFrame implements ActionListener{
                 this.repaint();
             }
         }
-        if(endgameFlag==1 && temp==1 ){
+        if(endgameFlag==1 && temp!=0 ){
             endgameFlag=0;
- 
             scoreArray.add(scoreUpdate);
             Collections.sort(scoreArray);
             Collections.reverse(scoreArray);
@@ -258,7 +271,19 @@ public class MainUI extends JFrame implements ActionListener{
                 ex.printStackTrace();
             }           
         }
-       
+        if (e.getSource() == playAgain){
+            endgameFlag = 0;
+            temp = 0;
+            card.show(container, "2");
+            this.leftPanel.remove(bubble1);
+            if (this.haveBubble2)
+                this.leftPanel.remove(bubble2);
+            this.haveBubble1 = false;
+            this.haveBubble2 = false;
+            scoreUpdate = 0;
+            score.setText(String.valueOf(scoreUpdate));    
+            SwingUtilities.updateComponentTreeUI(this);
+        }
     }
     
     
