@@ -12,10 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/HK6/Java/PROJECT/JAVAproject-master/src/game/ButtonScreen.java</file>
-            <file>file:/E:/HK6/Java/PROJECT/JAVAproject-master/src/game/MainUI.java</file>
-            <file>file:/E:/HK6/Java/PROJECT/JAVAproject-master/src/game/Bubble.java</file>
-            <file>file:/E:/HK6/Java/PROJECT/JAVAproject-master/src/game/Button.java</file>
+            <file>file:/E:/learning/Java/COURSE%20PROJECT/clone/src/game/Bubble.java</file>
+            <file>file:/E:/learning/Java/COURSE%20PROJECT/clone/src/game/MainUI.java</file>
+            <file>file:/E:/learning/Java/COURSE%20PROJECT/clone/src/game/Runner.java</file>
+            <file>file:/E:/learning/Java/COURSE%20PROJECT/clone/src/game/Button.java</file>
+            <file>file:/E:/learning/Java/COURSE%20PROJECT/clone/src/game/ButtonScreen.java</file>
         </group>
     </open-files>
 </project-private>
