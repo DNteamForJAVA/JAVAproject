@@ -34,17 +34,17 @@ public class Bubble extends JPanel implements ActionListener {
         initBubble(x,y,numR,numC);        
         this.setBounds(this.x_coordinate, this.y_coordinate, this.bubbleWidth, this.bubbleHeight);
         if(MainUI.scoreUpdate > 20){
-            timer = new Timer(18, this);
-        timer.start();
+            timer = new Timer(10, this);
+            timer.start();
         }else if(MainUI.scoreUpdate > 15){
-            timer = new Timer(20, this);
-        timer.start();
+            timer = new Timer(15, this);
+            timer.start();
         }else if(MainUI.scoreUpdate > 12){
-            timer = new Timer(24, this);
-        timer.start();
+            timer = new Timer(20, this);
+            timer.start();
         }else if(MainUI.scoreUpdate > 7){
-            timer = new Timer(28, this);
-        timer.start();
+            timer = new Timer(25, this);
+            timer.start();
         }else{
             timer = new Timer(30, this);
             timer.start();

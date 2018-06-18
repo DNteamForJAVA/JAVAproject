@@ -114,8 +114,8 @@ public class MainUI extends JFrame implements ActionListener{
         gameOver = new JLabel("GAME OVER!!",SwingConstants.CENTER);
         gameOver.setBounds(230, 50, 340, 80);     
         gameOver.setFont(new Font("Arial", Font.PLAIN, 50));
-        endScore = new JLabel();
-        endScore.setBounds(380, 150, 340, 80);
+        endScore = new JLabel("",SwingConstants.CENTER);
+        endScore.setBounds(230, 150, 340, 80);
         endScore.setFont(new Font("Arial", Font.PLAIN, 70));
         playAgain = new JButton("PLAY AGAIN");
         playAgain.setBounds(340, 250, 120, 30);
